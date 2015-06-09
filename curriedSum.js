@@ -21,16 +21,14 @@ function curriedSum (numArgs) {
 
 Function.prototype.curry = function(numArgs)
 {
-	var fn = this
+	var that = this
 	var args = []
-	function _curry(arg)
+	function _curry(fn)
 	{
-		args.push(arg)
-		if (args.length === numArgs)
-		{
-			return fn.apply(null,args)
-		}
-		else{
+		args.push(fn)
+		if (args.length === numArgs) {
+			return that.apply(that ,args)
+		}else{
 			return _curry
 		}
 	}
