@@ -26,9 +26,22 @@ Array.prototype.myMap = function(f){
 		mappedArray.push(f(el));
 	});
 	return mappedArray;
+};
+
+Array.prototype.myInject = function(f){
+	var result = this[0];
+	for(var i = 1; i<this.length; i ++){
+		result = f(result,this[i]);
+	}
+	return result;
+};
+
+function multiply(x, y){
+	return x*y;
 }
 
 var y = [1,2,3,10];
-var z = y.myMap(square);
-console.log(z);
+console.log(y.myInject(multiply));
+// var z = y.myMap(square);
+// console.log(z);
 
